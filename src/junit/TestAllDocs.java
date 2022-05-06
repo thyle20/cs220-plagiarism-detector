@@ -22,12 +22,20 @@ class TestAllDocs {
 		// TODO you probably want to add more code or more tests
 		// This just gets things started
 		//
+		long start = System.currentTimeMillis();
+		IPlagiarismDetector d = makeDetector(3);
+		long total = System.currentTimeMillis() - start;
+		System.out.printf("It took %.1f seconds to read the documents\n", total/1000.0);
 		
+		start = System.currentTimeMillis();
+		Collection<String> lookAlike = d.getSuspiciousPairs(200);
+		total = System.currentTimeMillis() - start;
+		System.out.printf("It took %.1f seconds to check for suspicious pairs in the documents\n", total/1000.0);
 		
 		// how long does it take to create a detector?
-		long start = System.currentTimeMillis();
-		IPlagiarismDetector detector = makeDetector(3);
-		long total = System.currentTimeMillis() - start;
+		start = System.currentTimeMillis();
+		IPlagiarismDetector detector = makeDetector(5);
+		total = System.currentTimeMillis() - start;
 		System.out.printf("It took %.1f seconds to read the documents\n", total/1000.0);
 		
 		// how long does it take to search for suspicious pairs?
@@ -37,12 +45,24 @@ class TestAllDocs {
 		// The average essay is less than 500 words long.
 		// What is a good number to put here? Try some different values to
 		// figure that out!
-		Collection<String> pairs = detector.getSuspiciousPairs(500);
-		for (String pair : pairs) {
+		Collection<String> pairs = detector.getSuspiciousPairs(200);
+		/*for (String pair : pairs) {
 			System.out.println(pair);
-		}
+		}*/
 		total = System.currentTimeMillis() - start;
 		System.out.printf("It took %.1f seconds to check for suspicious pairs in the documents\n", total/1000.0);
+		
+		
+		start = System.currentTimeMillis();
+		IPlagiarismDetector d1 = makeDetector(10);
+		total = System.currentTimeMillis() - start;
+		System.out.printf("It took %.1f seconds to read the documents\n", total/1000.0);
+		
+		start = System.currentTimeMillis();
+		Collection<String> alike = d1.getSuspiciousPairs(200);
+		total = System.currentTimeMillis() - start;
+		System.out.printf("It took %.1f seconds to check for suspicious pairs in the documents\n", total/1000.0);
+		
 	}
 	
 	

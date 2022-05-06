@@ -132,9 +132,9 @@ public class PlagiarismDetector implements IPlagiarismDetector {
 				}
 			}
 		}
-		/*for (String str : suspicious) {
+		for (String str : suspicious) {
 			System.out.println("Suspicious:" + str);
-		}*/
+		}
 		return suspicious;
 	}
 
@@ -147,4 +147,5 @@ public class PlagiarismDetector implements IPlagiarismDetector {
 			readFile(f);
 		}
 	}
+	
 }
